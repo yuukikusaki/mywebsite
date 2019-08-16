@@ -6,6 +6,16 @@
 + :default-active 默认为 当前路由
 
 ## 首页 HomeContainer
+1. 分为左右两个页面
+2. 左页面
+  + 上边用 element 组件的 走马灯制作幻灯片
+    - 预定在 api/carousel 上获取 
+    - 把图片 url 传入 photoList
+  + 下面用 卡片组件
+    - 预定在 api/info 上获取
+    - 使用 infoList 接收
+    - 把 图片URL、title、info_message 和 网页链接URL 传过来
+3. 右页面 先挂一个日历
 
 ## 学习笔记 NotesContaioner
 

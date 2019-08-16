@@ -42,6 +42,7 @@ html,
 body {
   width: 100%;
   height: 100%;
+  background-color: #f5f5f5;
 }
 ul {
   list-style: none;
@@ -92,7 +93,7 @@ img {
 }
 .el-menu-demo {
   background-color: #409eff;
-  padding-left: 80px;
+  padding-left: 95px;
   .el-menu-item {
     color: #fff;
     font-size: 15px;
