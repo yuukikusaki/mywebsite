@@ -5,6 +5,10 @@
 + 设置 router 
 + :default-active 默认为 当前路由
 
+## main.js
++ index.js 设置 mode:'history', 把 # 去掉
++ 使用 npm i 导入 vue-resource 
+
 ## 首页 HomeContainer
 1. 分为左右两个页面
 2. 左页面
@@ -16,6 +20,7 @@
     - 使用 infoList 接收
     - 把 图片URL、title、info_message 和 网页链接URL 传过来
 3. 右页面 先挂一个日历
+4. 项目信息栏已有，现在是用 api 连接作为测试，之后改为本地更好
 
 ## 学习笔记 NotesContaioner
 

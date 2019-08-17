@@ -8,6 +8,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+import VueRouter from 'vue-resource'
+Vue.use(VueRouter);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

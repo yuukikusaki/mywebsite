@@ -4,7 +4,7 @@
     <div class="left-container">
       <!-- 幻灯片部分 -->
       <el-carousel :interval="5000" arrow="always">
-        <el-carousel-item v-for="item in photoList" :key="item">
+        <el-carousel-item v-for="item in photoList" :key="item.index">
           <h3>{{ item }}</h3>
         </el-carousel-item>
       </el-carousel>
@@ -12,13 +12,13 @@
       <!-- 信息栏部分 -->
       <div class="info-list">
         <el-card class="box-card">
-          <div v-for="o in infoList" :key="o" class="text item">
-            <h3>列表标题:{{o}}</h3>
+          <div v-for="(item,index) in workList" :key="index" class="text item">
+            <h3><a :href="item.work_url"><i class="el-icon-caret-right"></i> {{ item.title }}</a></h3>
             <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+              :src="item.work_image"
               class="image"
             />
-            {{'列表内容 ' + o }}
+            <p>{{ item.summary }}</p>
           </div>
         </el-card>
       </div>
@@ -36,9 +36,21 @@ export default {
   data() {
     return {
       photoList: 4,
-      infoList: 4,
+      workList: [],
       value: new Date()
     };
+  },
+  created() {
+    this.getWorkInfo();
+  },
+  methods:{
+    getWorkInfo(){
+      this.$http.get('http://127.0.0.1:8081/listUsers').then(result =>{
+        if(result.body.status === 0){
+          this.workList = result.body.message;
+        }
+      })
+    }
   }
 };
 </script>
@@ -79,9 +91,20 @@ export default {
       border-radius: 5px;
     }
 
+    a{
+      color: #000;
+    }
+    a:hover{
+      color: #0273C6;
+    }
     .image {
+      margin-top: 15px;
       width: 30%;
-      height: 200px;
+      height: 170px;
+    }
+    p{
+      display: inline-block;
+      margin: 15px 0 0 10px;
     }
   }
 }
