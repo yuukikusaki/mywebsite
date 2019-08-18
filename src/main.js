@@ -9,7 +9,7 @@ import App from './App'
 import router from './router'
 import VueRouter from 'vue-resource'
 Vue.use(VueRouter);
-Vue.http.options.root = 'http://127.0.0.1:8081';
+Vue.http.options.root = 'http://www.kusaki.xyz:8081';
 
 Vue.config.productionTip = false
 
