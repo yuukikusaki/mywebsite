@@ -10,6 +10,7 @@ Vue.use(ElementUI);
 
 import VueRouter from 'vue-resource'
 Vue.use(VueRouter);
+Vue.http.options.root = 'http://127.0.0.1:8081';
 
 Vue.config.productionTip = false
 

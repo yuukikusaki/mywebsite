@@ -21,6 +21,7 @@
     - 把 图片URL、title、info_message 和 网页链接URL 传过来
 3. 右页面 先挂一个日历
 4. 项目信息栏已有，现在是用 api 连接作为测试，之后改为本地更好
+5. 跑马灯图片ok
 
 ## 学习笔记 NotesContaioner
 

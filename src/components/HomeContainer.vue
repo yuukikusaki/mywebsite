@@ -4,8 +4,8 @@
     <div class="left-container">
       <!-- 幻灯片部分 -->
       <el-carousel :interval="5000" arrow="always">
-        <el-carousel-item v-for="item in photoList" :key="item.index">
-          <h3>{{ item }}</h3>
+        <el-carousel-item v-for="item in carouselList" :key="item.index">
+          <img :src="item.img_url" :alt="item.title" class="c_img">
         </el-carousel-item>
       </el-carousel>
 
@@ -13,9 +13,9 @@
       <div class="info-list">
         <el-card class="box-card">
           <div v-for="(item,index) in workList" :key="index" class="text item">
-            <h3><a :href="item.work_url"><i class="el-icon-caret-right"></i> {{ item.title }}</a></h3>
+            <h3><a :href="item.web_url"><i class="el-icon-caret-right"></i> {{ item.title }}</a></h3>
             <img
-              :src="item.work_image"
+              :src="item.img_url"
               class="image"
             />
             <p>{{ item.summary }}</p>
@@ -35,19 +35,27 @@
 export default {
   data() {
     return {
-      photoList: 4,
+      carouselList: [],
       workList: [],
       value: new Date()
     };
   },
   created() {
     this.getWorkInfo();
+    this.getCarousel();
   },
   methods:{
     getWorkInfo(){
-      this.$http.get('http://127.0.0.1:8081/listUsers').then(result =>{
+      this.$http.get('workinfo').then(result =>{
         if(result.body.status === 0){
           this.workList = result.body.message;
+        }
+      })
+    },
+    getCarousel(){
+      this.$http.get('carousel').then(result =>{
+        if(result.body.status === 0){
+          this.carouselList = result.body.message;
         }
       })
     }
@@ -66,6 +74,15 @@ export default {
 .left-container {
   float: left;
   width: 70%;
+
+  .el-carousel__container{
+    height: 400px;
+  }
+
+  .c_img{
+    width: 100%;
+    height: 100%;
+  }
 
   .el-carousel__item:nth-child(2n) {
     background-color: #99a9bf;
@@ -113,8 +130,5 @@ export default {
 .right-container {
   float: right;
   width: 30%;
-  .el-calendar{
-      
-  }
 }
 </style>
