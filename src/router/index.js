@@ -9,7 +9,7 @@ import DownloadContainer from '../components/DownloadContainer.vue'
 import MessageContainer from '../components/MessageContainer.vue'
 
 export default new Router({
-  mode:'history',
+  // mode:'history',
   routes: [
     { path:'/',redirect:'/home'},
     { path: '/home', component: HomeContainer },
