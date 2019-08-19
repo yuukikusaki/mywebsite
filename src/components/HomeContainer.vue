@@ -81,7 +81,7 @@ export default {
 
   .c_img{
     width: 100%;
-    height: 100%;
+    height: 400px;
   }
 
   .el-carousel__item:nth-child(2n) {

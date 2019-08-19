@@ -20,6 +20,7 @@
 + 利用 Element UI 的导航栏
 + 设置 router 
 + :default-active 默认为 当前路由
++ body 添加 mix-width，防止手机端打开挤在一起
 
 ## main.js
 + index.js 设置 mode:'history', 把 # 去掉
@@ -37,7 +38,7 @@
     - 把 图片URL、title、info_message 和 网页链接URL 传过来
 3. 右页面 先挂一个日历
 4. 项目信息栏已有，现在是用 api 连接作为测试，之后改为本地更好
-5. 跑马灯图片ok
+5. 跑马灯图片手动设置高度，避免瀑布式加载
 
 ## 学习笔记 NotesContaioner
 
