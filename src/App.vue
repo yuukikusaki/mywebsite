@@ -20,6 +20,12 @@
 
     <!-- 主体部分 -->
     <router-view></router-view>
+
+    <!-- 右边模块 -->
+    <div class="right-container">
+      <el-calendar v-model="value"></el-calendar>
+    </div>
+
   </div>
 </template>
 
@@ -101,6 +107,16 @@ img {
     height: 40px;
     line-height: 40px;
     background-color: #409eff;
+  }
+}
+
+#app-container{
+  position: relative;
+  .right-container{
+    position: absolute;
+    top:130px;
+    right: 85px;
+    width: 350px;
   }
 }
 </style>

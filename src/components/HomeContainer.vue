@@ -24,10 +24,7 @@
       </div>
     </div>
 
-    <!-- 右边模块 -->
-    <div class="right-container">
-      <el-calendar v-model="value"></el-calendar>
-    </div>
+    
   </div>
 </template>
 
@@ -65,16 +62,14 @@ export default {
 
 <style lang="scss" scope>
 .home-container {
-  margin: 0 95px;
-  width: auto;
+  margin: 0 440px 0 95px;
   height: 800px;
 }
 
 // 左边
 .left-container {
   float: left;
-  width: 70%;
-
+  
   .el-carousel__container{
     height: 400px;
   }
@@ -124,11 +119,5 @@ export default {
       margin: 15px 0 0 10px;
     }
   }
-}
-
-// 右边
-.right-container {
-  float: right;
-  width: 30%;
 }
 </style>

@@ -21,6 +21,7 @@
 + 设置 router 
 + :default-active 默认为 当前路由
 + body 添加 mix-width，防止手机端打开挤在一起
+3. 把 home 的右边栏移了过来
 
 ## main.js
 + index.js 设置 mode:'history', 把 # 去掉
@@ -45,7 +46,8 @@
 ## 资料下载 DownLoadContainer
 
 ## 留言板 MessageContainer
-
-
+1. 简单的评论人、评论内容、发表评论按钮和展示列表
+2. 实现点击评论把内容上传到api ，然后自动刷新列表
+3. 实现点击页面切换的功能
 
 ### 8.14 完成了基础部分
