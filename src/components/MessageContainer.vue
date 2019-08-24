@@ -101,7 +101,7 @@ export default {
   .badge {
     float: right;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     background-color: #777;
     color: #fff;
     border-radius: 10px;
