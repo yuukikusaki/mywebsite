@@ -3,12 +3,23 @@
     <!-- 评论内容 -->
     <div class="cmt-list">
       <ul class="list-group">
-        <li class="list-group-item" v-for="(item,index) in cmtList" :key="index">
+        <li
+          class="list-group-item"
+          v-for="(item,index) in cmtList.slice((this.currentPage-1)*this.pageSize,this.currentPage*this.pageSize)"
+          :key="index"
+        >
           <span class="badge">{{ item.floor }}楼： {{ item.name }}</span>
           {{ item.content }}
         </li>
       </ul>
-      <el-pagination layout="prev, pager, next" :total="50"></el-pagination>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="cmtList.length"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-size="pageSize"
+      ></el-pagination>
     </div>
     <!-- 评论人信息 -->
     <div class="cmt-container">
@@ -33,7 +44,9 @@ export default {
     return {
       user: "",
       content: "",
-      cmtList: []
+      cmtList: [],
+      currentPage: 1,
+      pageSize: 10
     };
   },
   created() {
@@ -62,6 +75,9 @@ export default {
           this.getComment();
         }
       });
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
     }
   }
 };
@@ -93,6 +109,14 @@ export default {
     line-height: 1;
   }
 }
+
+.el-pagination {
+  position: absolute;
+  top: 410px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .cmt-container {
   position: absolute;
   top: 450px;
