@@ -25,6 +25,7 @@
 + :default-active 默认为 当前路由
 + body 添加 mix-width，防止手机端打开挤在一起
 3. 把 home 的右边栏移了过来
+4. 加上了顶部图片，设置顶部栏绝对定位
 
 ## main.js
 + index.js 设置 mode:'history', 把 # 去掉

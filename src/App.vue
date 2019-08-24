@@ -7,8 +7,7 @@
     <el-row>
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
-          <el-menu :default-active="this.$route.path" class="el-menu-demo" router mode="horizontal"
-          >
+          <el-menu :default-active="this.$route.path" class="el-menu-demo" router mode="horizontal">
             <el-menu-item index="/home">首页</el-menu-item>
             <el-menu-item index="/notes">学习笔记</el-menu-item>
             <el-menu-item index="/download">资料下载</el-menu-item>
@@ -25,7 +24,6 @@
     <div class="right-container">
       <el-calendar></el-calendar>
     </div>
-
   </div>
 </template>
 
@@ -71,8 +69,8 @@ img {
 
 .top-container {
   width: 100%;
-  height: 90px;
-  background-color: pink;
+  height: 150px;
+  background: url("../images/home.jpg");
 }
 
 .el-menu--horizontal > .el-menu-item.is-active,
@@ -110,11 +108,18 @@ img {
   }
 }
 
-#app-container{
+#app-container {
   position: relative;
-  .right-container{
+
+  .el-col-24 {
     position: absolute;
-    top:130px;
+    top: -40px;
+    opacity: 0.9;
+  }
+
+  .right-container {
+    position: absolute;
+    top: 150px;
     right: 85px;
     width: 350px;
   }
