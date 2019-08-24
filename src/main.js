@@ -10,6 +10,7 @@ import router from './router'
 import VueRouter from 'vue-resource'
 Vue.use(VueRouter);
 Vue.http.options.root = 'http://www.kusaki.xyz:8081';
+Vue.http.options.emulateJSON = true;
 
 Vue.config.productionTip = false
 

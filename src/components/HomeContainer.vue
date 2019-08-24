@@ -43,14 +43,14 @@ export default {
   },
   methods:{
     getWorkInfo(){
-      this.$http.get('workinfo').then(result =>{
+      this.$http.get('getWorkinfo').then(result =>{
         if(result.body.status === 0){
           this.workList = result.body.message;
         }
       })
     },
     getCarousel(){
-      this.$http.get('carousel').then(result =>{
+      this.$http.get('getCarousel').then(result =>{
         if(result.body.status === 0){
           this.carouselList = result.body.message;
         }

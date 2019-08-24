@@ -1,3 +1,6 @@
+## 准备把主页面框架也固定在 App.vue
+
+
 # npm run build 打包注意事项
 ## config --> index.js
   ```
@@ -14,7 +17,7 @@
   ```
 ## 刷新404错误 mode:'history'
 
-# 基础页面 APP.vue
+# 基础页面 App.vue
 1. 就一个标题栏
 2. 首页、学习笔记、资料下载、留言板
 + 利用 Element UI 的导航栏
@@ -26,6 +29,7 @@
 ## main.js
 + index.js 设置 mode:'history', 把 # 去掉
 + 使用 npm i 导入 vue-resource 
++ 添加 post 的默认格式
 
 ## 首页 HomeContainer
 1. 分为左右两个页面
@@ -48,6 +52,9 @@
 ## 留言板 MessageContainer
 1. 简单的评论人、评论内容、发表评论按钮和展示列表
 2. 实现点击评论把内容上传到api ，然后自动刷新列表
+  + 利用了post上传数据
+  + 执行之后再获取一遍留言
+  + 留言以倒序出现
 3. 实现点击页面切换的功能
 
 ### 8.14 完成了基础部分

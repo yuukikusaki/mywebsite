@@ -3,8 +3,8 @@
     <!-- 评论内容 -->
     <div class="cmt-list">
       <ul class="list-group">
-        <li class="list-group-item" v-for="item in cmtList" :key="item.index">
-          <span class="badge">评论人： {{ item.user }}</span>
+        <li class="list-group-item" v-for="(item,index) in cmtList" :key="index">
+          <span class="badge">{{ item.floor }}楼： {{ item.name }}</span>
           {{ item.content }}
         </li>
       </ul>
@@ -15,14 +15,14 @@
       <div class="cmt-content">
         <label>评论内容：</label>
         <br />
-        <textarea name="cmt" cols="50" rows="4"></textarea>
+        <textarea name="cmt" cols="50" rows="4" v-model="content"></textarea>
       </div>
       <div class="cmt-content">
         <label>评论人：</label>
         <br />
-        <input type="text" />
+        <input type="text" v-model="user" />
       </div>
-      <el-button type="primary">发表评论</el-button>
+      <el-button type="primary" @click="postComment">发表评论</el-button>
     </div>
   </div>
 </template>
@@ -31,21 +31,38 @@
 export default {
   data() {
     return {
-      cmtList: [
-        { id: Date.now(), user: "李白", content: "天生我才必有用" },
-        { id: Date.now(), user: "杜甫", content: "落花时节又逢君" },
-        { id: Date.now(), user: "杜牧", content: "霜叶红于二月花" },
-
-        { id: Date.now(), user: "杜牧", content: "霜叶红于二月花" },
-        { id: Date.now(), user: "杜牧", content: "霜叶红于二月花" },
-        { id: Date.now(), user: "杜牧", content: "霜叶红于二月花" },
-
-        { id: Date.now(), user: "杜牧", content: "霜叶红于二月花" },
-        { id: Date.now(), user: "杜牧", content: "霜叶红于二月花" },
-        { id: Date.now(), user: "杜牧", content: "霜叶红于二月花" },
-        { id: Date.now(), user: "杜牧", content: "霜叶红于二月花" }
-      ]
+      user: "",
+      content: "",
+      cmtList: []
     };
+  },
+  created() {
+    this.getComment();
+  },
+  methods: {
+    getComment() {
+      this.$http.get("getComment").then(result => {
+        if (result.body.status === 0) {
+          this.cmtList = result.body.message;
+        }
+      });
+    },
+    postComment() {
+      if ((this.user || this.content) == "") {
+        return;
+      }
+      const length = this.cmtList.length + 1;
+      const cmt = {
+        floor: length,
+        name: this.user,
+        content: this.content
+      };
+      this.$http.post("postComment", cmt).then(result => {
+        if (result.body.status === 0) {
+          this.getComment();
+        }
+      });
+    }
   }
 };
 </script>
@@ -79,7 +96,7 @@ export default {
 .cmt-container {
   position: absolute;
   top: 450px;
-margin-left: 20px;
+  margin-left: 20px;
   .cmt-content {
     margin-bottom: 10px;
   }
@@ -103,8 +120,8 @@ margin-left: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
-  .el-button{
-      margin-top: 10px;
+  .el-button {
+    margin-top: 10px;
   }
 }
 </style>

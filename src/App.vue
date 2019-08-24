@@ -23,7 +23,7 @@
 
     <!-- 右边模块 -->
     <div class="right-container">
-      <el-calendar v-model="value"></el-calendar>
+      <el-calendar></el-calendar>
     </div>
 
   </div>
