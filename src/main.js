@@ -12,7 +12,12 @@ Vue.use(VueRouter);
 Vue.http.options.root = 'http://www.kusaki.xyz:8081';
 Vue.http.options.emulateJSON = true;
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+import moment from 'moment'
+Vue.filter('dateFormat', function (dateStr,pattern = "YYYY-MM-DD HH:mm:ss") {
+  return moment(dateStr).format(pattern);
+})
 
 /* eslint-disable no-new */
 new Vue({

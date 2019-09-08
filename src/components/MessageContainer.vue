@@ -9,7 +9,8 @@
           :key="index"
         >
           <span class="badge">{{ item.floor }}楼： {{ item.name }}</span>
-          {{ item.content }}
+          <span class="cmt-time">{{ item.date | dateFormat }}</span>
+          <p class="cmt-content">{{ item.content}}</p>         
         </li>
       </ul>
       <el-pagination
@@ -39,11 +40,13 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   data() {
     return {
       user: "",
       content: "",
+      date: moment().format('YYYY-MM-DD HH:mm:ss'),
       cmtList: [],
       currentPage: 1,
       pageSize: 10
@@ -53,6 +56,7 @@ export default {
     this.getComment();
   },
   methods: {
+    // 获取评论
     getComment() {
       this.$http.get("getComment").then(result => {
         if (result.body.status === 0) {
@@ -60,6 +64,7 @@ export default {
         }
       });
     },
+    // 发送评论
     postComment() {
       if ((this.user || this.content) == "") {
         return;
@@ -68,14 +73,18 @@ export default {
       const cmt = {
         floor: length,
         name: this.user,
-        content: this.content
+        content: this.content,
+        date: this.date
       };
       this.$http.post("postComment", cmt).then(result => {
         if (result.body.status === 0) {
           this.getComment();
+          this.user = null;
+          this.content = null;
         }
       });
     },
+    // 换页
     handleCurrentChange(val) {
       this.currentPage = val;
     }
@@ -90,6 +99,7 @@ export default {
   position: relative;
 }
 
+// 评论列表
 .list-group-item {
   padding: 10px 15px;
   margin-bottom: -1px;
@@ -97,6 +107,12 @@ export default {
   border: 1px solid #ddd;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+
+  .cmt-content{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
   .badge {
     float: right;
@@ -108,18 +124,25 @@ export default {
     padding: 3px 7px;
     line-height: 1;
   }
+
+  .cmt-time {
+    float: right;
+    clear: both;
+  }
+}
+.list-group-item:after {
+  content: ".";
+  height: 0;
+  visibility: hidden;
+  display: block;
+  clear: both;
 }
 
 .el-pagination {
-  position: absolute;
-  top: 410px;
-  left: 50%;
-  transform: translateX(-50%);
+  text-align: center;
 }
 
 .cmt-container {
-  position: absolute;
-  top: 450px;
   margin-left: 20px;
   .cmt-content {
     margin-bottom: 10px;
